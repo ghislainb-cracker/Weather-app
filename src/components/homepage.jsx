@@ -13,9 +13,10 @@ export default function Home(){
     
     const clientId = "uWBEPWd4k0tcC8KmWR4GB";
     const clientSecret = "c7TUvM6MIBCzPvzq91bE4K2GBaxehWnee1IxRG7D";
-    const location = "nyarugenge";
     const navigate = useNavigate();
     const [weatherData, setWeatherData] = useState(null);
+    const [search, setSearch] = useState("");
+    const [location, setLocation] = useState("nyarugenge"); 
     useEffect(() => {
         async function fetchData() {
             try {
@@ -29,7 +30,7 @@ export default function Home(){
         }
     
         fetchData(); // <--- Call the function here
-    }, []);
+    }, [location]);
 
     // const formatDate = (timestamp) => {
     //     const date = new Date(timestamp * 1000);
@@ -87,13 +88,26 @@ export default function Home(){
                 className="search-input"
                 spellCheck="false"
                 autoComplete="off"
+                value={search}
+                onChange={(e) => setSearch(e.target.value)}
+                onKeyDown={(e) => {
+                    if (e.key === "Enter") {
+                        setLocation(search);
+                        setSearch("");
+                    }
+                }}
                 />
             </div>
             <div className="dashboard">
                 <h2 className="dashboard-city">{weatherData && weatherData.response[0].place.name}</h2>
                 <p className="dashboard-chance">chance of rain:{weatherData && weatherData.response[0].periods[0].pop}%</p>
                 <h1 className="dashboard-temp">{weatherData && weatherData.response[0].periods[0].maxTempC}°C</h1>
-                <img className="dashboard-img" src="../src/assets/sun.png" width={200}/>
+                <img 
+                className="dashboard-img"
+                src={`../src/assets/weatherIcons/${weatherData && weatherData.response[0].periods[0].icon}`}
+                alt={weatherData && weatherData.response[0].periods[0].weather}
+                width={200}
+                />
             </div>
             <div className="today-forecast">
                 <p className="Toforecast-text">Today's Forecast</p>

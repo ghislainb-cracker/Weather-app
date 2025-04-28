@@ -2,10 +2,13 @@
 
 @keyframes rotate-sun {
    0% {
-       transform: rotate(0deg);
+       transform: scale(1);
+   }
+   50% {
+       transform: scale(1.1);
    }
    100% {
-       transform: rotate(360deg);
+       transform: scale(1);
    }
 }
 @keyframes bounce {
@@ -173,7 +176,7 @@ body{
    margin-left: 10px;
 }
 .dashboard-img{
-   animation: rotate-sun 10s linear infinite;
+   animation: rotate-sun 3s ease infinite;
    box-sizing: border-box;
    margin: -180px 0 0 550px;
 }
