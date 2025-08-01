@@ -11,8 +11,8 @@ import { useNavigate } from "react-router-dom";
 
 export default function Home(){
     
-    const clientId = "uWBEPWd4k0tcC8KmWR4GB";
-    const clientSecret = "c7TUvM6MIBCzPvzq91bE4K2GBaxehWnee1IxRG7D";
+    const clientId = "client_id";
+    const clientSecret = "client_secret";
     const navigate = useNavigate();
     const [weatherData, setWeatherData] = useState(null);
     const [search, setSearch] = useState("");
